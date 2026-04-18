@@ -13,6 +13,7 @@ The frontend is the user-facing interface for the Kyrgyz Heritage Platform. It p
   - Calendar
 - Includes a short introduction to the platform
 - Features a call-to-action for the chatbot and quizzes
+- Includes framer-motion library
 
 ### Sacred Places Module
 - Displays a list or map of sacred places
@@ -21,7 +22,7 @@ The frontend is the user-facing interface for the Kyrgyz Heritage Platform. It p
 
 ### Petroglyph Module
 - Displays images of petroglyphs
-- Provides historical explanations
+- Provides historical explanations, citations
 - Includes interpretation support or storytelling
 
 ### Calendar Module
