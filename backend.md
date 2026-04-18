@@ -9,45 +9,42 @@ The backend provides API services, data storage, and AI chatbot integration for 
 
 ## Core API Endpoints
 
-### GET /sacred-sites
-Returns metadata and content for sacred places.
-
-### GET /petroglyphs
-Returns petroglyph images, descriptions, and historical context.
-
-### GET /calendar
-Returns traditional calendar data and modern calendar comparisons.
+### GET /articles
+Returns all articles (sacred sites, petroglyphs, calendar content).
+- Query params: type (sacred-sites, petroglyphs, calendar) to filter
+- Returns: list of articles with id, title, content, type, etc.
 
 ### POST /chat
 Accepts user chat queries and returns LLM responses.
 - Input: user message, optional context/topic tag
 - Output: chatbot answer
 
-### POST /quiz/submit
-Accepts quiz answers and returns quiz score.
-- Input: quiz id, user answers
-- Output: score, feedback, optionally leaderboard placement
+### Admin Endpoints (protected, admin-only)
+These endpoints allow admins to manage articles. Access via footer link with authentication.
+
+#### GET /admin/articles
+Returns all articles for admin management.
+
+#### POST /admin/articles
+Creates a new article.
+- Input: title, content, type, etc.
+
+#### PUT /admin/articles/:id
+Updates an existing article.
+
+#### DELETE /admin/articles/:id
+Deletes an article.
 
 ## Data Model Concepts
 
-### SacredSite
-- id
-- name
-- location
-- description
-- culturalMeaning
-- practices
-
-### Petroglyph
+### Article
 - id
 - title
-- imageUrl
-- description
-- interpretation
-
-### CalendarEntry
-- id
-- dateTraditional
+- content (rich text or markdown)
+- type (sacred-sites, petroglyphs, calendar)
+- imageUrl (optional)
+- createdAt
+- updatedAt
 - dateModern
 - description
 - culturalNotes
@@ -69,9 +66,5 @@ Accepts quiz answers and returns quiz score.
 - Use a cloud or hosted LLM API for chatbot responses
 - Keep chatbot basic: answer cultural questions, no advanced domain reasoning required
 - Avoid overbuilding the chat experience in the MVP
-
-## Future Backend Enhancements
-- Add content management for admins
-- Store quiz results for progress tracking
-- Add leaderboard support
-- Add caching for static content responses
+- Implement basic authentication for admin endpoints (e.g., simple password or token)
+- Admin access via footer link, leading to a simple admin dashboard for CRUD operations
